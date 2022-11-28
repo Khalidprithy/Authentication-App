@@ -50,7 +50,7 @@ const SignUp = () => {
             phone: data.phone,
             email: data.email,
         }
-        await fetch(`http://localhost:8000/user/${data.email}`, {
+        await fetch(`http://localhost:5000/user/${data.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -78,7 +78,7 @@ const SignUp = () => {
     return (
         <div className='min-h-screen'>
             <div className="card flex justify-center">
-                <div className="card-body w-11/12 md:w-4/12 mx-auto bg-gray-500 text-gray-50 rounded-lg m-4 mt-10">
+                <div className="card-body w-11/12 md:w-6/12 xl:w-4/12 mx-auto bg-gray-500 text-gray-50 rounded-lg m-4 mt-10">
                     <h2 className='text-3xl text-center font-semibold'>Sign Up</h2>
                     <div className="flex items-center justify-between">
                         <button
@@ -102,7 +102,7 @@ const SignUp = () => {
                                 })}
                             />
                             <label className="label">
-                                {errors.name && <span className="label-text text-base font-semibold text-red-700">{errors.name.message}</span>}
+                                {errors.name && <span className="label-text text-base font-semibold text-red-400">{errors.name.message}</span>}
                             </label>
                         </div>
                         <div className="form-control w-full">
@@ -119,7 +119,7 @@ const SignUp = () => {
                                 })}
                             />
                             <label className="label">
-                                {errors.place && <span className="label-text text-base font-semibold text-red-700">{errors.place.message}</span>}
+                                {errors.place && <span className="label-text text-base font-semibold text-red-400">{errors.place.message}</span>}
                             </label>
                         </div>
                         <div className="form-control w-full">
@@ -145,7 +145,7 @@ const SignUp = () => {
                                 })}
                             />
                             <label className="label">
-                                {errors.phone && <span className="label-text text-base font-semibold text-red-700">{errors.phone.message}</span>}
+                                {errors.phone && <span className="label-text text-base font-semibold text-red-400">{errors.phone.message}</span>}
                             </label>
                         </div>
                         <div className="form-control w-full">
@@ -153,7 +153,7 @@ const SignUp = () => {
                             <input
                                 type="email"
                                 placeholder="Your Email"
-                                className={`input input-bordered w-full text-black ${errors.email && 'focus:border-red-600 focus:ring-red-600 border-2 border-red-600'}`}
+                                className={`input input-bordered w-full text-black ${errors.email && 'focus:border-red-400 focus:ring-red-400 border-2 border-red-400'}`}
                                 {...register("email", {
                                     required: {
                                         value: true,
@@ -166,8 +166,8 @@ const SignUp = () => {
                                 })}
                             />
                             <label className="label">
-                                {errors.email?.type === 'required' && <span className="label-text text-base font-semibold text-red-700">{errors.email.message}</span>}
-                                {errors.email?.type === 'pattern' && <span className="label-text text-base font-semibold text-red-700">{errors.email.message}</span>}
+                                {errors.email?.type === 'required' && <span className="label-text text-base font-semibold text-red-400">{errors.email.message}</span>}
+                                {errors.email?.type === 'pattern' && <span className="label-text text-base font-semibold text-red-400">{errors.email.message}</span>}
                             </label>
                         </div>
                         <div className="form-control w-full relative">
@@ -175,7 +175,7 @@ const SignUp = () => {
                             <input
                                 type={passwordShow ? 'text' : 'password'}
                                 placeholder="Your Password"
-                                className={`input input-bordered w-full text-black ${errors.password && 'focus:border-red-600 focus:ring-red-600 border-2 border-red-600'}`}
+                                className={`input input-bordered w-full text-black ${errors.password && 'focus:border-red-400 focus:ring-red-400 border-2 border-red-400'}`}
                                 {...register("password", {
                                     required: {
                                         value: true,
@@ -193,7 +193,7 @@ const SignUp = () => {
                                 }
                             </div>
                             <label className="label">
-                                {errors.password && <span className="label-text text-base font-sem text-red-700">{errors.password.message}</span>}
+                                {errors.password && <span className="label-text text-base font-sem text-red-400">{errors.password.message}</span>}
                             </label>
                         </div>
                         <div className="form-control w-full relative">
@@ -204,7 +204,7 @@ const SignUp = () => {
                                     return false
                                 }}
                                 type={confirmPasswordShow ? 'text' : 'password'}
-                                className={`input input-bordered w-full text-black ${errors.confirmPassword && 'focus:border-red-600 focus:ring-red-600 border-2 border-red-600'}`}
+                                className={`input input-bordered w-full text-black ${errors.confirmPassword && 'focus:border-red-400 focus:ring-red-400 border-2 border-red-400'}`}
                                 {...register("confirmPassword", {
                                     required: 'Confirm your Password',
                                     validate: (value) =>
@@ -217,7 +217,7 @@ const SignUp = () => {
                                 }
                             </div>
                             <label className="label">
-                                {errors.confirmPassword && <span className="label-text text-base font-semibold text-red-700">{errors.confirmPassword.message}</span>}
+                                {errors.confirmPassword && <span className="label-text text-base font-semibold text-red-400">{errors.confirmPassword.message}</span>}
                             </label>
                         </div>
                         {errorMessage}

@@ -17,6 +17,8 @@ function App() {
     <div>
       <NavigationBar></NavigationBar>
       <Routes>
+        <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/contact' element={<Contact></Contact>}></Route>
@@ -25,8 +27,7 @@ function App() {
             <Profile />
           </RequireAuth>
         }></Route>
-        <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/signup' element={<SignUp></SignUp>}></Route>
+
         <Route path='/forgot-password' element={<ForgotPassword></ForgotPassword>}></Route>
       </Routes>
       <Footer></Footer>

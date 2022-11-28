@@ -4,12 +4,11 @@ import { Link } from 'react-router-dom';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import toast from 'react-hot-toast';
+import Loading from './Loading';
 const NavigationBar = () => {
 
 
     const [user] = useAuthState(auth);
-
-    console.log(user);
 
     const [signOut, loading, error] = useSignOut(auth);
 
@@ -33,8 +32,11 @@ const NavigationBar = () => {
                 }
             }}
             className='btn btn-sm btn-error mx-10 mt-2'>Logout</button>
-
     </>
+
+    if (loading) {
+        return <Loading></Loading>
+    }
 
 
     return (
@@ -84,7 +86,6 @@ const NavigationBar = () => {
                             <Link to='/signup' className='btn btn-sm btn-success'>SignUp</Link>
                         </>
                 }
-
 
             </div>
         </div>

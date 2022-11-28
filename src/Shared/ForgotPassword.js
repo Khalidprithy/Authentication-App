@@ -32,7 +32,7 @@ const ForgotPassword = () => {
     return (
         <div className='min-h-screen'>
             <div className="card flex justify-center">
-                <div className="card-body w-11/12 md:w-4/12 mx-auto bg-gray-500 text-gray-50 rounded-lg m-4 mt-10">
+                <div className="card-body w-11/12 md:w-6/12 xl:w-4/12 mx-auto bg-gray-500 text-gray-50 rounded-lg m-4 mt-10">
                     <h4 className='text-xl font-bold text-center'>Reset Password</h4>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control w-full">
@@ -40,7 +40,7 @@ const ForgotPassword = () => {
                             <input
                                 type="email"
                                 placeholder="Your Email"
-                                className={`input input-bordered w-full text-black ${errors.email && 'focus:border-red-600 focus:ring-red-600 border-2 border-red-600'}`}
+                                className={`input input-bordered w-full text-black ${errors.email && 'focus:border-red-400 focus:ring-red-400 border-2 border-red-400'}`}
                                 {...register("email", {
                                     required: {
                                         value: true,
@@ -53,8 +53,8 @@ const ForgotPassword = () => {
                                 })}
                             />
                             <label className="label">
-                                {errors.email?.type === 'required' && <span className="label-text text-base font-semibold text-red-700">{errors.email.message}</span>}
-                                {errors.email?.type === 'pattern' && <span className="label-text text-base font-semibold text-red-700">{errors.email.message}</span>}
+                                {errors.email?.type === 'required' && <span className="label-text text-base font-semibold text-red-400">{errors.email.message}</span>}
+                                {errors.email?.type === 'pattern' && <span className="label-text text-base font-semibold text-red-400">{errors.email.message}</span>}
                             </label>
                         </div>
 
