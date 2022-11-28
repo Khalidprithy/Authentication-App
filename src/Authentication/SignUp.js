@@ -6,6 +6,7 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import { updateProfile } from 'firebase/auth';
 import toast from 'react-hot-toast';
+import Loading from '../Shared/Loading';
 
 const SignUp = () => {
     const [passwordShow, setPasswordShow] = useState(false);
@@ -33,46 +34,48 @@ const SignUp = () => {
         await updateProfile({ displayName: data.name })
         toast.success(`Welcome to Auth App`)
     }
-
+    if (loading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div className='min-h-screen'>
             <div className="card flex justify-center">
-                <div className="card-body w-11/12 md:w-4/12 mx-auto bg-gray-500 text-gray-50 rounded-lg m-4">
+                <div className="card-body w-11/12 md:w-4/12 mx-auto bg-gray-500 text-gray-50 rounded-lg m-4 mt-10">
                     <h2 className='text-3xl text-center font-semibold'>Sign Up</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control w-full">
-                            <label className='ml-2 font-semibold' htmlFor="firstName">First Name</label>
+                            <label className='ml-2 font-semibold' htmlFor="name">First Name</label>
                             <input
                                 type="text"
-                                placeholder="First Name"
-                                className="input input-bordered w-full"
-                                {...register("firstName", {
+                                placeholder="Name"
+                                className="input input-bordered w-full text-black"
+                                {...register("name", {
                                     required: {
                                         value: true,
-                                        message: 'Please Enter Your First Name'
+                                        message: 'Please Enter Name'
                                     }
                                 })}
                             />
                             <label className="label">
-                                {errors.firstName && <span className="label-text text-base font-semibold text-red-700">{errors.firstName.message}</span>}
+                                {errors.name && <span className="label-text text-base font-semibold text-red-700">{errors.name.message}</span>}
                             </label>
                         </div>
                         <div className="form-control w-full">
-                            <label className='ml-2 font-semibold' htmlFor="lastName">Last Name</label>
+                            <label className='ml-2 font-semibold' htmlFor="name">Place</label>
                             <input
                                 type="text"
-                                placeholder="Last Name"
-                                className="input input-bordered w-full"
-                                {...register("lastName", {
+                                placeholder="Place"
+                                className="input input-bordered w-full text-black"
+                                {...register("place", {
                                     required: {
                                         value: true,
-                                        message: 'Please Enter Your Last Name'
+                                        message: 'Please Enter Place'
                                     }
                                 })}
                             />
                             <label className="label">
-                                {errors.lastName && <span className="label-text text-base font-semibold text-red-700">{errors.lastName.message}</span>}
+                                {errors.place && <span className="label-text text-base font-semibold text-red-700">{errors.place.message}</span>}
                             </label>
                         </div>
                         <div className="form-control w-full">
@@ -80,7 +83,7 @@ const SignUp = () => {
                             <input
                                 type="number"
                                 placeholder="Phone Number"
-                                className="input input-bordered w-full"
+                                className="input input-bordered w-full text-black"
                                 {...register("phone", {
                                     required: {
                                         value: true,
@@ -105,7 +108,7 @@ const SignUp = () => {
                             <input
                                 type="email"
                                 placeholder="Your Email"
-                                className={`input input-bordered w-full ${errors.email && 'focus:border-red-600 focus:ring-red-600 border-2 border-red-600'}`}
+                                className={`input input-bordered w-full text-black ${errors.email && 'focus:border-red-600 focus:ring-red-600 border-2 border-red-600'}`}
                                 {...register("email", {
                                     required: {
                                         value: true,
@@ -176,11 +179,12 @@ const SignUp = () => {
                         <div className='flex item-center gap-1'>
                             <input
                                 onClick={() => setAgree(!agree)}
-                                className='w-5 h-5 '
+                                className='w-5 h-5 rounded-full'
                                 type="checkbox" name="terms" id="" />
-                            <label className='ml-1 pb-2 text-gray-50' htmlFor="terms">I agree with the <span className='font-semibold text-gray-50 cursor-pointer'>terms and conditions</span></label>
+                            <label className='ml-1 pb-2 text-gray-50 text-sm md:text-base' htmlFor="terms">I agree with the <span className='font-semibold text-gray-50 cursor-pointer'>terms and conditions</span></label>
                         </div>
-                        <p>Already have an account? <Link className='text-green-400 hover:text-success' to='/login'>Login</Link> </p>
+
+                        <p className='text-center'>Already have an account? <Link className='text-success' to='/login'>Login</Link> </p>
                         <input
                             disabled={!agree}
                             className={agree ? 'btn btn-success w-full text-white mt-2 mx-auto transition ease-out duration-300' : 'btn btn-error mt-2 outline outline-1 outline-red-400 w-full'} type="submit" value='Create Account' />

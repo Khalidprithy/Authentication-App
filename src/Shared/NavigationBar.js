@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
+import toast from 'react-hot-toast';
 const NavigationBar = () => {
 
 
@@ -27,7 +28,7 @@ const NavigationBar = () => {
             onClick={async () => {
                 const success = await signOut();
                 if (success) {
-                    alert('You are sign out');
+                    toast.success('Logged out')
                 }
             }}
             className='btn btn-sm btn-error mx-10 mt-2'>Logout</button>
@@ -46,7 +47,10 @@ const NavigationBar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <a className="btn btn-accent normal-case text-xl">Auth App</a>
+                <div className='ml-0 md:ml-6'>
+                    <Link to='/' className='flex items-center gap-2 text-base md:text-2xl text-gray-50'><img className='w-10' src="https://icons.veryicon.com/png/o/business/business-style-icon/shield-24.png" alt="" />Auth App</Link>
+                </div>
+
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

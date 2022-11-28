@@ -8,7 +8,8 @@ import Contact from './Pages/Contact';
 import Login from './Authentication/Login';
 import SignUp from './Authentication/SignUp';
 import RequireAuth from './Shared/RequireAuth';
-import Toaster from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast';
+import ForgotPassword from './Shared/ForgotPassword';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         }></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        <Route path='/forgot-password' element={<ForgotPassword></ForgotPassword>}></Route>
       </Routes>
       <Footer></Footer>
       <Toaster></Toaster>

@@ -1,9 +1,22 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 
 const Home = () => {
+
+    const handleToast = () => {
+        toast.success('Working')
+    }
+
+
     return (
-        <div className='h-screen'>
+        <div className='min-h-screen'>
             <h1 className='text-4xl font-semibold mt-10 text-center'>Home</h1>
+            <div className='flex justify-center items-center'>
+                <h4
+                    onClick={handleToast}
+                    className='btn btn-sm btn-error'>Toast</h4>
+            </div>
+
         </div>
     );
 };
