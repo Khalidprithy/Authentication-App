@@ -10,6 +10,7 @@ import SignUp from './Authentication/SignUp';
 import RequireAuth from './Shared/RequireAuth';
 import { Toaster } from 'react-hot-toast';
 import ForgotPassword from './Shared/ForgotPassword';
+import Profile from './Pages/Profile';
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/about' element={<About></About>}></Route>
-        <Route path='/contact' element={
+        <Route path='/contact' element={<Contact></Contact>}></Route>
+        <Route path='/profile' element={
           <RequireAuth>
-            <Contact></Contact>
+            <Profile />
           </RequireAuth>
         }></Route>
         <Route path='/login' element={<Login></Login>}></Route>

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import auth from '../firebase.init';
+import Loading from './Loading';
 
 
 const ForgotPassword = () => {
@@ -22,6 +23,10 @@ const ForgotPassword = () => {
         else {
             toast.error('Please enter your email address');
         }
+    }
+
+    if (sending) {
+        return <Loading></Loading>
     }
 
     return (

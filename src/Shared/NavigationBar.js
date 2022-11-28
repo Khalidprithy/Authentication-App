@@ -17,6 +17,7 @@ const NavigationBar = () => {
         <li className='text-xl hover:bg-gray-50 hover:text-gray-700 rounded-xl text-gray-50 m-1'><Link to='/'>Home</Link></li>
         <li className='text-xl hover:bg-gray-50 hover:text-gray-700 rounded-xl text-gray-50 m-1'><Link to='/about'>About</Link></li>
         <li className='text-xl hover:bg-gray-50 hover:text-gray-700 rounded-xl text-gray-50 m-1'><Link to='/contact'>Contact</Link></li>
+        <li className='text-xl hover:bg-gray-50 hover:text-gray-700 rounded-xl text-gray-50 m-1'><Link to='/profile'>Profile</Link></li>
     </>
 
     const profileMenu = <>

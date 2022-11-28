@@ -3,35 +3,41 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
-import { GrFacebook } from 'react-icons/gr';
 import auth from '../firebase.init';
-import toast from 'react-hot-toast';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../Shared/Loading';
-
-
+import useToken from '../Shared/useToken';
 
 const Login = () => {
 
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+    const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
+    const [token] = useToken(user || googleUser)
+
     const [passwordShow, setPasswordShow] = useState(false);
     const navigate = useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm({
         mode: 'onTouched'
     });
+    let errorMessage;
 
-    const [signInWithGoogle, userG, loadingG, errorG] = useSignInWithGoogle(auth);
-    const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
-
+    if (error || googleError) {
+        errorMessage = <p className='text-error'>{error?.message || googleError?.message}</p>
+    }
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password)
-        console.log(data);
     }
 
-    if (loading || loadingG) {
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
+
+    if (loading || googleLoading) {
         return <Loading></Loading>
     }
 
@@ -92,7 +98,7 @@ const Login = () => {
                                 {errors.password && <span className="label-text text-base font-sem text-red-700">{errors.password.message}</span>}
                             </label>
                         </div>
-
+                        {errorMessage}
                         <Link to='/forgot-password'>Forgot Password?</Link>
 
                         <input

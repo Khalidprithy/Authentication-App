@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { FcGoogle } from 'react-icons/fc';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import { updateProfile } from 'firebase/auth';
 import toast from 'react-hot-toast';
 import Loading from '../Shared/Loading';
+import useToken from '../Shared/useToken';
 
 const SignUp = () => {
+
     const [passwordShow, setPasswordShow] = useState(false);
+
     const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
     const [
         createUserWithEmailAndPassword,
@@ -17,6 +21,12 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
+    console.log("Sign Up", user)
+
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+
+    const [token] = useToken(user || googleUser);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -27,14 +37,41 @@ const SignUp = () => {
     const [agree, setAgree] = useState(false);
     let errorMessage;
 
+    if (error || googleError) {
+        errorMessage = <p className='text-error'>{error?.message || googleError?.message}</p>
+    }
+
     const password = watch("password");
 
     const onSubmit = async data => {
+        const currentUser = {
+            name: data.name,
+            place: data.place,
+            phone: data.phone,
+            email: data.email,
+        }
+        await fetch(`http://localhost:8000/user/${data.email}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(currentUser)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                toast.success(`User added`)
+            })
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name })
         toast.success(`Welcome to Auth App`)
     }
-    if (loading) {
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
+
+    if (loading || googleLoading) {
         return <Loading></Loading>
     }
 
@@ -43,9 +80,16 @@ const SignUp = () => {
             <div className="card flex justify-center">
                 <div className="card-body w-11/12 md:w-4/12 mx-auto bg-gray-500 text-gray-50 rounded-lg m-4 mt-10">
                     <h2 className='text-3xl text-center font-semibold'>Sign Up</h2>
+                    <div className="flex items-center justify-between">
+                        <button
+                            onClick={() => signInWithGoogle()}
+                            className="btn btn-outline w-full text-gray-50 hover:bg-success hover:border-0 mt-6"><FcGoogle className='mr-2 text-xl'></FcGoogle>Google</button>
+                    </div>
+
+                    <div className="divider text-white">OR</div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control w-full">
-                            <label className='ml-2 font-semibold' htmlFor="name">First Name</label>
+                            <label className='ml-2 font-semibold' htmlFor="name">Name</label>
                             <input
                                 type="text"
                                 placeholder="Name"
@@ -81,6 +125,7 @@ const SignUp = () => {
                         <div className="form-control w-full">
                             <label className='ml-2 font-semibold' htmlFor="phone">Phone Number</label>
                             <input
+
                                 type="number"
                                 placeholder="Phone Number"
                                 className="input input-bordered w-full text-black"
