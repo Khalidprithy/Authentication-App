@@ -22,7 +22,7 @@ const Profile = () => {
 
     useEffect(() => {
         const email = user?.currentUser?.email;
-        const url = `http://localhost:5000/user/${email}`;
+        const url = `https://authentication-server.onrender.com/user/${email}`;
         fetch(url)
             .then(res => res.json())
             .then(data => (
@@ -39,7 +39,7 @@ const Profile = () => {
             phone: tempUsers.phone,
             place: tempUsers.place,
         }
-        const url = `http://localhost:5000/user/${email}`;
+        const url = `https://authentication-server.onrender.com/user/${email}`;
         fetch(url, {
             method: 'PUT',
             headers: {

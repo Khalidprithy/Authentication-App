@@ -50,7 +50,7 @@ const SignUp = () => {
             phone: data.phone,
             email: data.email,
         }
-        await fetch(`http://localhost:5000/user`, {
+        await fetch(`https://authentication-server.onrender.com/user`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
