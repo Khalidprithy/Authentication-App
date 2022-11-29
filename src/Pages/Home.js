@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 const Home = () => {
 
     const handleToast = () => {
-        toast.success('Working')
+        toast.success('Hello')
     }
 
     return (
@@ -13,7 +13,7 @@ const Home = () => {
             <div className='flex justify-center items-center'>
                 <h4
                     onClick={handleToast}
-                    className='btn btn-sm btn-error'>Toast</h4>
+                    className='btn btn-sm btn-error'>Hello</h4>
             </div>
 
         </div>

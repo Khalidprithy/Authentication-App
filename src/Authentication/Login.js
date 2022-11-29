@@ -30,8 +30,8 @@ const Login = () => {
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password)
+        navigate('/profile')
     }
-
 
     if (token) {
         navigate(from, { replace: true });
@@ -44,7 +44,7 @@ const Login = () => {
     return (
         <div className='min-h-screen'>
             <div className="card flex justify-center items-center">
-                <div className="card-body w-11/12 md:w-6/12 xl:w-4/12 mx-auto bg-gray-500 text-gray-50 rounded-lg m-4 mt-10">
+                <div className="card-body w-11/12 md:w-4/12 mx-auto bg-gray-500 text-gray-50 rounded-lg m-4 mt-10">
                     <h2 className='text-3xl text-center font-semibold'>Login</h2>
                     <div className="flex items-center justify-between">
                         <button

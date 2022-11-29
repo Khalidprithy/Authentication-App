@@ -1,4 +1,3 @@
-import { getAuth } from 'firebase/auth';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
@@ -28,6 +27,7 @@ const NavigationBar = () => {
             onClick={async () => {
                 const success = await signOut();
                 if (success) {
+                    localStorage.removeItem('accessToken')
                     toast.success('Logged out')
                 }
             }}

@@ -50,8 +50,8 @@ const SignUp = () => {
             phone: data.phone,
             email: data.email,
         }
-        await fetch(`http://localhost:5000/user/${data.email}`, {
-            method: 'PUT',
+        await fetch(`http://localhost:5000/user`, {
+            method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
@@ -64,11 +64,12 @@ const SignUp = () => {
             })
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name })
+        navigate('/profile')
         toast.success(`Welcome to Auth App`)
     }
 
-    if (token) {
-        navigate(from, { replace: true });
+    if (user) {
+        navigate('/profile');
     }
 
     if (loading || googleLoading) {
@@ -78,7 +79,7 @@ const SignUp = () => {
     return (
         <div className='min-h-screen'>
             <div className="card flex justify-center">
-                <div className="card-body w-11/12 md:w-6/12 xl:w-4/12 mx-auto bg-gray-500 text-gray-50 rounded-lg m-4 mt-10">
+                <div className="card-body w-11/12 md:w-4/12 mx-auto bg-gray-500 text-gray-50 rounded-lg m-4 mt-10">
                     <h2 className='text-3xl text-center font-semibold'>Sign Up</h2>
                     <div className="flex items-center justify-between">
                         <button
