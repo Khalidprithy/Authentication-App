@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Authentication App
+## This is a Firebase and ExpressJs Login Sign-up app
+This is a ReactJS app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🔗 Links
+[client](https://authentication-app-8be13.web.app/)
+[server](https://authentication-server.onrender.com/)
 
-## Available Scripts
+## Email & Password
 
-In the project directory, you can run:
+- Email: test123@gmail.com
+- Password: test123B
 
-### `npm start`
+## Documentation
+Authentication App built with React and Tailwind for frontend and Nodejs ExpressJs MongoDB for backend. I did not store any sensible data on the MongoDB server. The whole Login and SignUp is handled by firebase so it's more secure. It also offers the flexibility to customize in future. I have used react-hook-form for the Login Sign Up form. All error and condition is also handled with react-hook-form. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Features used Client side
+- React
+- Tailwind
+- DaizyUI
+- React Router Dom 
+- React Icon 
+- React Firebase hooks
+- Hot toast 
+- React hook form
+- React-icons
+## Features used server side
+- Nodejs
+- Express
+- cors-
+- JWT
+- MongoDB
+### Login authentication
+- Login with email password 
+- Social login (Google)
+- Verify email 
+- Reset password 
+- Email validation massage for wrong email format. 
+- Password validation Minimum 8 characters, at least one Uppercase alphabet, one number.
+- Error massage for wrong email password 
+- Error massage if password does not match
+- Error massage for other inputs
